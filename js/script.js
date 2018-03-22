@@ -23,8 +23,8 @@ function dragElement(ele) {
         pos3 = e.touches[0].clientX;
         pos4 = e.touches[0].clientY;
 
-        document.touchend  = closeDragElement;
-        document.touchmove = elementTouchDrag;
+        document.ontouchend  = closeDragElement;
+        document.ontouchmove = elementTouchDrag;
 
         dragDown();
     }
@@ -52,7 +52,7 @@ function dragElement(ele) {
 
     function elementTouchDrag(e) {
         e = e || window.event;
-        let pos = {x: e.touches[0].clientX, y: e.touches[0].clientX};
+        let pos = {x: e.touches[0].clientX, y: e.touches[0].clientY};
         elementDrag(pos);
     }    
 
