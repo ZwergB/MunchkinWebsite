@@ -46,7 +46,7 @@ body {
 }
 
 #focus {
-    z-index: 100;
+    z-index: 5;
 }
 
 /* Input Elements */
@@ -94,3 +94,16 @@ body {
 .clickAnimation:active {
     filter:brightness(80%);
 }
+
+@media screen and (max-width:700px) {
+    .circleBase {
+        width: 150px;
+        height: 150px;
+    }
+
+    .circleBase input {
+        margin: 5px;
+        font-size: 15px;
+    }
+          
+} 
