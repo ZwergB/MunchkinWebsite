@@ -32,6 +32,12 @@
     cursor: pointer;
     
     animation: 0.3s;
+
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;      
 }
 
 #powerLevel input {
@@ -60,6 +66,7 @@ body {
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
+                                 
 
     background-color: rgba(179, 149, 67, 0.85);
 }
