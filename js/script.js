@@ -4,40 +4,65 @@ let deleteActivated = false;
 function dragElement(ele) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     ele.onmousedown  = dragMouseDown;
-    ele.touchstart = dragMouseDown;
+    ele.touchstart   = dragTouchDown;
 
     function dragMouseDown(e) {
-
-        // delete element if 
-        if (deleteActivated) {
-            ele.parentElement.removeChild(ele);
-            return;
-        }
-
         e = e || window.event;
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
-        document.touchend  = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
-        document.touchmove   = elementDrag;
+        dragDown();
+    }
+
+    function dragTouchDown(e) {
+        e = e || window.event;
+        
+        pos3 = e.touches[0].clientX;
+        pos4 = e.touches[0].clientY;
+
+        document.touchend  = closeDragElement;
+        document.touchmove = elementMouseDrag;
+
+        dragDown();
+    }
+
+    function dragDown() {
+
+        // delete element if deleteActivated
+        if (deleteActivated) {
+            ele.parentElement.removeChild(ele);
+            return;
+        }
 
         for (let ele of document.getElementsByClassName('player')) {
             ele.removeAttribute('id');
         } 
 
-        ele.setAttribute('id', 'focus');
+        ele.setAttribute('id', 'focus');        
     }
 
-    function elementDrag(e) {
+    function elementMouseDrag(e) {
         e = e || window.event;
+        let pos = {x: e.clientX, y: e.clientY};
+        elementDrag(pos);
+    }
+
+    function elementTouchDrag(e) {
+        e = e || window.event;
+        let pos = {x: e.touches[0].clientX, y: e.touches[0].clientX};
+        elementDrag(pos);
+    }    
+
+
+    function elementDrag(pos) {
         // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
+        pos1 = pos3 - pos.x;
+        pos2 = pos4 - pos.y;
+        pos3 = pos.x;
+        pos4 = pos.y;
         // set the element's new position:
         ele.style.top = (ele.offsetTop - pos2) + 'px';
         ele.style.left = (ele.offsetLeft - pos1) + 'px';
