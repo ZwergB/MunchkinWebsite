@@ -101,6 +101,7 @@ function addPlayer() {
         let newIn = document.createElement('input');
         newIn.setAttribute('maxlength', maxLength);
         newIn.setAttribute('value', 'name');
+        newIn.setAttribute('type', 'text');
         newC.appendChild(newIn);
         
         // Add power input
@@ -134,8 +135,10 @@ function addPlayer() {
         newIn.setAttribute('maxlength', maxLength);
         let gender = Math.random() >= 0.5 ? 'male' : 'female';
         newIn.setAttribute('value', gender);
+        newIn.setAttribute('onchange', 'testForSignal(this);');
         newC.appendChild(newIn);
 
+        newC.setAttribute('id', gender);
         newP.appendChild(newC);
 
         return newP;
@@ -156,4 +159,15 @@ function toggleDelete() {
     const borderStyle = '2px solid red';
     deleteActivated = !deleteActivated;
     document.getElementById('removePlayer').style.border = ( deleteActivated ) ? borderStyle : null;
+}
+
+function testForSignal(ele) {
+    let eleValue = ele.value;
+    if ( eleValue == 'male' || eleValue == 'm' ) {
+        ele.parentElement.setAttribute('id', 'male');
+    } else if ( eleValue == 'female' || eleValue == 'f' ) {
+        ele.parentElement.setAttribute('id', 'female');
+    } else {
+        ele.parentElement.setAttribute('id', 'none');
+    }
 }

@@ -12,7 +12,7 @@
     cursor: move;
 
     box-shadow: 2px 2px 2px 2px #00000055;
-    background-color: #AAAAFF;
+    background-color: #DDDDDD;
 
     display: flex;
     flex-direction: column;
@@ -76,6 +76,18 @@ body {
     text-align: center; 
     font-size: 20px;
     outline: none;
+}
+
+#male {
+    background-color: #9999FF;
+}
+
+#female {
+    background-color: #FF9999;    
+}
+
+#none {
+    background-color: #999999;    
 }
 
 /* Menu Buttons */
