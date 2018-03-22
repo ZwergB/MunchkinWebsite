@@ -4,16 +4,16 @@ let deleteActivated = false;
 function dragElement(ele) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     ele.onmousedown  = dragMouseDown;
-    ele.touchstart   = dragTouchDown;
+    ele.ontouchstart = dragTouchDown;
 
     function dragMouseDown(e) {
         e = e || window.event;
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
+        document.onmouseup   = closeDragElement;
         // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
+        document.onmousemove = elementMouseDrag;
         dragDown();
     }
 
@@ -24,7 +24,7 @@ function dragElement(ele) {
         pos4 = e.touches[0].clientY;
 
         document.touchend  = closeDragElement;
-        document.touchmove = elementMouseDrag;
+        document.touchmove = elementTouchDrag;
 
         dragDown();
     }
@@ -128,6 +128,6 @@ function toggleDelete() {
     if (deleteActivated) {
         document.getElementById('removePlayer').style.border = '2px solid red'
     } else {
-        document.getElementById('removePlayer').style.border = '';
+        document.getElementById('removePlayer').style.border = null;
     }
 }
