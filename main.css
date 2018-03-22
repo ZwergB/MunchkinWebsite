@@ -1,0 +1,96 @@
+.circleBase {
+    border-radius: 50%;
+    border: none;
+
+    text-align: center;
+    
+    width: 300px;
+    height: 300px;
+
+    transition: 0.3s;
+    outline: none;
+    cursor: move;
+
+    box-shadow: 2px 2px 2px 2px #00000055;
+    background-color: #00CC00;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+}
+
+.circleBase:hover {
+    filter:brightness(110%);
+}
+
+.player {
+    position: absolute;
+    text-align: center;
+
+    top: 25%;
+    left: 25%;
+
+    z-index: 1;
+}
+
+body {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+
+    background-color: rgba(179, 149, 67, 0.85);
+}
+
+#focus {
+    z-index: 100;
+}
+
+/* Input Elements */
+.circleBase input {
+    background-color: #00000000;
+    border: none;
+    margin: 15px;
+    text-align: center; 
+    font-size: 20px;
+    outline: none;
+}
+
+/* Menu Buttons */
+#menu button {
+    box-shadow: 2px 2px 2px 2px #00000055;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+    margin: 10px;     
+    font-size: 50px;
+    text-align: center;
+    border: none;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#menu button:active {
+    transform: translate(0.5px, 0.5px);
+    box-shadow: 1px 1px 1px 1px #00000055;;
+}
+
+#addPlayer {
+    background-color: rgba(255, 0, 0, 0.75);
+}
+
+#removePlayer {
+    background-color: #333333;
+}
+
+.clickAnimation:hover {
+    filter:brightness(120%);
+}
+
+.clickAnimation:active {
+    filter:brightness(80%);
+}
