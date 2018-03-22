@@ -109,7 +109,7 @@ function addPlayer() {
 
         // add left arrow image
         let newImg = document.createElement('img');
-        newImg.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Circle_arrow_left_font_awesome.svg');
+        newImg.setAttribute('src', 'media/left_arrow.svg');
         newImg.setAttribute('alt', '<-');
         newImg.setAttribute('onclick', 'changePower(this, -1);')
         newDiv.appendChild(newImg);
@@ -122,7 +122,7 @@ function addPlayer() {
 
         // add left arrow image
         newImg = document.createElement('img');
-        newImg.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Circle_arrow_right_font_awesome.svg');
+        newImg.setAttribute('src', 'media/right_arrow.svg');
         newImg.setAttribute('alt', '->');
         newImg.setAttribute('onclick', 'changePower(this, 1);')
         newDiv.appendChild(newImg);
