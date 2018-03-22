@@ -3,7 +3,8 @@ let deleteActivated = false;
 // Credit goes to https://www.w3schools.com/howto/howto_js_draggable.asp for the dragElement function.
 function dragElement(ele) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    ele.onmousedown = dragMouseDown;
+    ele.onmousedown  = dragMouseDown;
+    ele.touchstart = dragMouseDown;
 
     function dragMouseDown(e) {
 
@@ -18,8 +19,10 @@ function dragElement(ele) {
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
+        document.touchend  = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
+        document.touchmove   = elementDrag;
 
         for (let ele of document.getElementsByClassName('player')) {
             ele.removeAttribute('id');
@@ -42,8 +45,10 @@ function dragElement(ele) {
 
     function closeDragElement() {
         /* stop moving when mouse button is released:*/
-        document.onmouseup = null;
+        document.onmouseup   = null;
         document.onmousemove = null;
+        document.touchend    = null;
+        document.touchmove   = null;
     }
 }
 
