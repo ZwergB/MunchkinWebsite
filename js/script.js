@@ -104,10 +104,30 @@ function addPlayer() {
         newC.appendChild(newIn);
         
         // Add power input
+        let newDiv = document.createElement('div');
+        newDiv.setAttribute('id', 'powerLevel');
+
+        // add left arrow image
+        let newImg = document.createElement('img');
+        newImg.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Circle_arrow_left_font_awesome.svg');
+        newImg.setAttribute('alt', '<-');
+        newImg.setAttribute('onclick', 'changePower(this, -1);')
+        newDiv.appendChild(newImg);
+
+        // the actual input
         newIn = document.createElement('input');
         newIn.setAttribute('maxlength', maxLength);
         newIn.setAttribute('value', '1');
-        newC.appendChild(newIn);
+        newDiv.appendChild(newIn);
+
+        // add left arrow image
+        newImg = document.createElement('img');
+        newImg.setAttribute('src', 'https://upload.wikimedia.org/wikipedia/commons/4/47/Circle_arrow_right_font_awesome.svg');
+        newImg.setAttribute('alt', '->');
+        newImg.setAttribute('onclick', 'changePower(this, 1);')
+        newDiv.appendChild(newImg);
+
+        newC.appendChild(newDiv);
 
         // Add gender input
         newIn = document.createElement('input');
@@ -122,12 +142,18 @@ function addPlayer() {
     }
 }
 
-function toggleDelete() {
-    deleteActivated = !deleteActivated;
-
-    if (deleteActivated) {
-        document.getElementById('removePlayer').style.border = '2px solid red'
-    } else {
-        document.getElementById('removePlayer').style.border = null;
+function changePower(ele, value) {
+    let newEle = ele.parentElement;
+    
+    for (const element of newEle.getElementsByTagName('input')) {
+        let eleValue = parseInt(element.getAttribute('value'));
+        eleValue += value;
+        element.setAttribute('value', eleValue);
     }
+}
+
+function toggleDelete() {
+    const borderStyle = '2px solid red';
+    deleteActivated = !deleteActivated;
+    document.getElementById('removePlayer').style.border = ( deleteActivated ) ? borderStyle : null;
 }
