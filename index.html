@@ -1,28 +1,16 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-"http://www.w3.org/TR/html4/strcit.dtd">
+<!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Munchkin</title>
-    <style type="text/css">
-        canvas {
-            border: solid black 2px;
-        }
-    </style>
     <link rel="stylesheet" href="css/main.css">
-    <script type="text/javascript" src="js/script.js"></script>
+    <script src="js/script.js"></script>
 </head>
 <body>
     <div id="players">
     </div>
     <div id="menu">
-        <table>
-            <th>
-                <button id="addPlayer" class="clickAnimation" onclick="addPlayer();">+</button>
-            </th>
-            <th>
-                <button id="removePlayer" class="clickAnimation" onclick="toggleDelete();">-</button>
-            </th>
-        </table>
+        <button id="addPlayer" class="clickAnimation" onclick="addPlayer();">+</button>
+        <button id="removePlayer" class="clickAnimation" onclick="toggleDelete();">-</button>
     </div>
 </body>

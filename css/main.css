@@ -101,6 +101,9 @@ body {
 #menu {
     position: fixed;
     bottom: 0;
+
+    display: flex;
+    flex-direction: row;
 }
 
 #menu button {
