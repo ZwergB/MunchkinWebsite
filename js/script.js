@@ -1,6 +1,6 @@
 let deleteActivated = false;
 let playerBubble;
-loadJSON('/json/player.json', x => playerBubble = x);
+loadJSON('json/player.json', x => playerBubble = x);
 
 // Credit goes to https://www.w3schools.com/howto/howto_js_draggable.asp for the dragElement function.
 function dragElement(ele) {
@@ -169,8 +169,7 @@ function addPlayer() {
         // Add gender input
         newIn = document.createElement('input');
         newIn.setAttribute('maxlength', maxLength);
-        let gender = Math.random() >= 0.5 ? 'male' : 'female';
-        newIn.setAttribute('value', gender);
+        newIn.setAttribute('value', 'gender');
         newIn.setAttribute('onchange', 'testForSignal(this);');
         newC.appendChild(newIn);
     
