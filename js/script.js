@@ -191,9 +191,12 @@ function changePower(ele, value) {
 }
 
 function toggleDelete() {
-    const borderStyle = '2px solid red';
     deleteActivated = !deleteActivated;
-    document.getElementById('removePlayer').style.border = ( deleteActivated ) ? borderStyle : null;
+
+    if (deleteActivated) 
+        document.getElementById('removePlayer').classList.add('activeButton');
+    else
+        document.getElementById('removePlayer').classList.remove('activeButton');
 }
 
 function testForSignal(ele) {
@@ -208,8 +211,9 @@ function testForSignal(ele) {
 }
 
 function loadJSON(file, callback) {   
-    var xobj = new XMLHttpRequest();
-        xobj.overrideMimeType("application/json");
+    let xobj = new XMLHttpRequest();
+
+    xobj.overrideMimeType("application/json");
     xobj.open('GET', file, true); // Replace 'my_data' with the path to your file
     xobj.onreadystatechange = function () {
           if (xobj.readyState == 4 && xobj.status == "200") {

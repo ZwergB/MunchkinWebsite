@@ -98,6 +98,11 @@ body {
 }
 
 /* Menu Buttons */
+#menu {
+    position: fixed;
+    bottom: 0;
+}
+
 #menu button {
     box-shadow: 2px 2px 2px 2px #00000055;
 
@@ -114,7 +119,7 @@ body {
 
 #menu button:active {
     transform: translate(0.5px, 0.5px);
-    box-shadow: 1px 1px 1px 1px #00000055;;
+    box-shadow: 1px 1px 1px 1px #00000055;
 }
 
 #addPlayer {
@@ -123,6 +128,12 @@ body {
 
 #removePlayer {
     background-color: #333333;
+}
+
+.activeButton {
+    border: 2px solid red !important;
+    box-shadow: 1px 1px 1px 1px #00000055 !important;
+    filter:brightness(80%) !important;
 }
 
 .clickAnimation:hover {
