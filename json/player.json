@@ -1,58 +1,67 @@
 {
-    "elements": [{
-        "tagName": "div",
-        "attributes": {
-            "class": "player"
-        },
-        "elements" : [{
+    "elements": [
+        {
             "tagName": "div",
             "attributes": {
-                "class": "circleBase"
+                "class": "player"
             },
-            "elements": [{
-                "tagName": "input",
-                "attributes": {
-                    "maxlength": 20,
-                    "value": "name"
-                }
-            }, {
-                "tagName": "div",
-                "attributes": {
-                    "id": "powerLevel"
-                },
-                "elements": [{
-                    "tagName": "img",
-                    "attributes": {
-                        "src": "media/left_arrow.svg",
-                        "alt": "<-",
-                        "onclick": "changePower(this, -1);"
-                    }
-                }, {
-                    "tagName": "input",
-                    "attributes": {
-                        "maxlength": 20,
-                        "value": 1
-                    }
-                }, {
+            "elements": [
+                {
                     "tagName": "div",
                     "attributes": {
-                        "id": "powerLevel"
-                    }
-                }, {
-                    "tagName": "img",
-                    "attributes": {
-                        "src": "media/right_arrow.svg",
-                        "alt": "->",
-                        "onclick": "changePower(this, 1);"
-                    }                    
-                }]
-            }, {
-                "tagName": "input",
-                "attributes": {
-                    "maxlength": 20,
-                    "value": "gender"
-                }                
-            }]
-        }]
-    }]
+                        "class": "circleBase",
+                        "id": "none"
+                    },
+                    "elements": [
+                        {
+                            "tagName": "input",
+                            "attributes": {
+                                "maxlength": 20,
+                                "value": "name"
+                            }
+                        },
+                        {
+                            "tagName": "div",
+                            "attributes": {
+                                "id": "powerLevel"
+                            },
+                            "elements": [
+                                {
+                                    "tagName": "img",
+                                    "attributes": {
+                                        "src": "media/left_arrow.svg",
+                                        "alt": "<-",
+                                        "onclick": "changePower(this, -1);"
+                                    }
+                                },
+                                {
+                                    "tagName": "input",
+                                    "attributes": {
+                                        "maxlength": 20,
+                                        "value": 1
+                                    }
+                                },
+                                {
+                                    "tagName": "img",
+                                    "attributes": {
+                                        "src": "media/right_arrow.svg",
+                                        "alt": "->",
+                                        "onclick": "changePower(this, 1);"
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "tagName": "input",
+                            "attributes": {
+                                "maxlength": 20,
+                                "value": "gender",
+                                "onchange": "testForSignal(this);"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

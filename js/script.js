@@ -1,4 +1,6 @@
 let deleteActivated = false;
+let playerBubble;
+loadJSON('/json/player.json', x => playerBubble = x);
 
 // Credit goes to https://www.w3schools.com/howto/howto_js_draggable.asp for the dragElement function.
 function dragElement(ele) {
@@ -72,8 +74,8 @@ function dragElement(ele) {
         /* stop moving when mouse button is released:*/
         document.onmouseup   = null;
         document.onmousemove = null;
-        document.ontouchend    = null;
-        document.ontouchmove   = null;
+        document.ontouchend  = null;
+        document.ontouchmove = null;
     }
 }
 
@@ -89,11 +91,45 @@ function addPlayer() {
     ele.appendChild(newPlayer);
 
     function createNewPlayer(x, y) {
-        let newP = document.createElement('div');
-        
-        newP.setAttribute('class', 'player');
-        dragElement(newP);
+        let newP;
 
+        if (playerBubble)
+            newP = parseElement(playerBubble);
+        else
+            newP = getPlayerBubble();
+        
+        dragElement(newP);
+        return newP;
+    }
+
+    function parseElement(ele) {
+        let eleConfig = JSON.parse(ele);
+        
+        let newEle = parseNode(eleConfig['elements'][0]);
+        return newEle;
+    }
+    
+    function parseNode(node) {
+        let mainNode = document.createElement(node['tagName']);
+    
+        let attrConfig = node['attributes'];
+        for (let attr in attrConfig) {
+            mainNode.setAttribute(attr, attrConfig[attr])
+        }
+        
+        let eleConfig = node['elements'];
+        let eleNode;
+        for (let ele in eleConfig) {
+            eleNode = parseNode(eleConfig[ele]);
+            mainNode.appendChild(eleNode);
+        }
+        return mainNode;
+    }    
+
+    function getPlayerBubble() {
+        let newP = document.createElement('div');
+        newP.setAttribute('class', 'player');
+    
         let newC = document.createElement('div');
         newC.setAttribute('class', 'circleBase');
         
@@ -107,29 +143,29 @@ function addPlayer() {
         // Add power input
         let newDiv = document.createElement('div');
         newDiv.setAttribute('id', 'powerLevel');
-
+    
         // add left arrow image
         let newImg = document.createElement('img');
         newImg.setAttribute('src', 'media/left_arrow.svg');
         newImg.setAttribute('alt', '<-');
         newImg.setAttribute('onclick', 'changePower(this, -1);')
         newDiv.appendChild(newImg);
-
+    
         // the actual input
         newIn = document.createElement('input');
         newIn.setAttribute('maxlength', maxLength);
         newIn.setAttribute('value', '1');
         newDiv.appendChild(newIn);
-
+    
         // add left arrow image
         newImg = document.createElement('img');
         newImg.setAttribute('src', 'media/right_arrow.svg');
         newImg.setAttribute('alt', '->');
         newImg.setAttribute('onclick', 'changePower(this, 1);')
         newDiv.appendChild(newImg);
-
+    
         newC.appendChild(newDiv);
-
+    
         // Add gender input
         newIn = document.createElement('input');
         newIn.setAttribute('maxlength', maxLength);
@@ -137,12 +173,12 @@ function addPlayer() {
         newIn.setAttribute('value', gender);
         newIn.setAttribute('onchange', 'testForSignal(this);');
         newC.appendChild(newIn);
-
+    
         newC.setAttribute('id', gender);
         newP.appendChild(newC);
-
+    
         return newP;
-    }
+    }    
 }
 
 function changePower(ele, value) {
@@ -171,3 +207,16 @@ function testForSignal(ele) {
         ele.parentElement.setAttribute('id', 'none');
     }
 }
+
+function loadJSON(file, callback) {   
+    var xobj = new XMLHttpRequest();
+        xobj.overrideMimeType("application/json");
+    xobj.open('GET', file, true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+          }
+    };
+    xobj.send(null);  
+ }
