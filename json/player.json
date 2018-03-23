@@ -17,7 +17,8 @@
                             "tagName": "input",
                             "attributes": {
                                 "maxlength": 20,
-                                "value": "name"
+                                "value": "name",
+                                "onchange": "testForSpecialName(this)"
                             }
                         },
                         {
