@@ -185,9 +185,9 @@ function changePower(ele, value) {
     let newEle = ele.parentElement;
     
     for (const element of newEle.getElementsByTagName('input')) {
-        let eleValue = parseInt(element.getAttribute('value'));
+        let eleValue = parseInt(element.value);
         eleValue += value;
-        element.setAttribute('value', eleValue);
+        element.value = eleValue;
     }
 }
 
