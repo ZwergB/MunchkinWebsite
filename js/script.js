@@ -173,7 +173,7 @@ function addPlayer() {
         newIn.setAttribute('onchange', 'testForSignal(this);');
         newC.appendChild(newIn);
     
-        newC.setAttribute('id', gender);
+        newC.setAttribute('id', 'none');
         newP.appendChild(newC);
     
         return newP;
