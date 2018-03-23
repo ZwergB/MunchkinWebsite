@@ -138,6 +138,7 @@ function addPlayer() {
         newIn.setAttribute('maxlength', maxLength);
         newIn.setAttribute('value', 'name');
         newIn.setAttribute('type', 'text');
+        newIn.setAttribute('onchange', 'testForSpecialName(this);')
         newC.appendChild(newIn);
         
         // Add power input
@@ -208,6 +209,16 @@ function testForSignal(ele) {
     } else {
         ele.parentElement.setAttribute('id', 'none');
     }
+}
+
+// Just for fun function
+function testForSpecialName(ele) {
+    let eleValue = ele.value;
+    if ( eleValue == 'zwergb' ) 
+        ele.parentElement.classList.add('specialName')
+    else 
+        ele.parentElement.classList.remove('specialName');
+
 }
 
 function loadJSON(file, callback) {   

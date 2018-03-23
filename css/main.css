@@ -159,3 +159,14 @@ body {
     }
           
 } 
+
+.specialName {
+    animation: specName 3s linear infinite !important;
+}
+
+@keyframes specName {
+    0%   {background-color:rgba(255, 0,   0,   0.8); }
+    33%  {background-color:rgba(0,   255, 0,   0.8); }
+    66%  {background-color:rgba(0,   0,   255, 0.8); }
+    100% {background-color:rgba(255, 0,   0,   0.8); }
+}
