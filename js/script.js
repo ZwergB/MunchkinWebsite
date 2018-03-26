@@ -1,5 +1,6 @@
 let deleteActivated = false;
 let playerBubble;
+
 loadJSON('json/player.json', x => playerBubble = x);
 
 // Credit goes to https://www.w3schools.com/howto/howto_js_draggable.asp for the dragElement function.
@@ -39,11 +40,11 @@ function dragElement(ele) {
             return;
         }
 
-        for (let ele of document.getElementsByClassName('player')) {
-            ele.removeAttribute('id');
+        for (let element of document.getElementsByClassName('player')) {
+            element.classList.remove('focus');
         } 
 
-        ele.setAttribute('id', 'focus');        
+        ele.classList.add('focus');        
     }
 
     function elementMouseDrag(e) {
@@ -83,7 +84,7 @@ function addPlayer() {
     const maxLength = 20;
 
     let ele = document.getElementById('players');
-
+    
     let newPlayer = createNewPlayer();
     newPlayer.style.left = (Math.random()*65) + 5 + '%';
     newPlayer.style.top =  (Math.random()*65) + 5 + '%'; 
@@ -143,7 +144,7 @@ function addPlayer() {
         
         // Add power input
         let newDiv = document.createElement('div');
-        newDiv.setAttribute('id', 'powerLevel');
+        newDiv.setAttribute('id', 'numbers');
     
         // add left arrow image
         let newImg = document.createElement('img');
@@ -218,7 +219,6 @@ function testForSpecialName(ele) {
         ele.parentElement.classList.add('specialName')
     else 
         ele.parentElement.classList.remove('specialName');
-
 }
 
 function loadJSON(file, callback) {   
@@ -233,4 +233,4 @@ function loadJSON(file, callback) {
           }
     };
     xobj.send(null);  
- }
+}

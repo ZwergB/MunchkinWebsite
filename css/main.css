@@ -23,7 +23,7 @@
     filter:brightness(110%);
 }
 
-#powerLevel img {
+#numbers img {
     width: 30px;
     height: 30px;
     
@@ -40,11 +40,11 @@
     -ms-user-select: none;      
 }
 
-#powerLevel input {
+#numbers input {
     width:50px;
 }
 
-#powerLevel img:hover {
+#v img:hover {
     filter: invert(20%);
 }
 
@@ -71,8 +71,8 @@ body {
     background-color: rgba(179, 149, 67, 0.85);
 }
 
-#focus {
-    z-index: 5;
+.focus {
+    z-index: 5 !important;
 }
 
 /* Input Elements */

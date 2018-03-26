@@ -24,7 +24,7 @@
                         {
                             "tagName": "div",
                             "attributes": {
-                                "id": "powerLevel"
+                                "id": "numbers"
                             },
                             "elements": [
                                 {
@@ -52,6 +52,37 @@
                                 }
                             ]
                         },
+                        {
+                            "tagName": "div",
+                            "attributes": {
+                                "id": "numbers"
+                            },
+                            "elements": [
+                                {
+                                    "tagName": "img",
+                                    "attributes": {
+                                        "src": "media/left_arrow.svg",
+                                        "alt": "<-",
+                                        "onclick": "changePower(this, -1);"
+                                    }
+                                },
+                                {
+                                    "tagName": "input",
+                                    "attributes": {
+                                        "maxlength": 20,
+                                        "value": 1
+                                    }
+                                },
+                                {
+                                    "tagName": "img",
+                                    "attributes": {
+                                        "src": "media/right_arrow.svg",
+                                        "alt": "->",
+                                        "onclick": "changePower(this, 1);"
+                                    }
+                                }
+                            ]
+                        },                        
                         {
                             "tagName": "input",
                             "attributes": {
