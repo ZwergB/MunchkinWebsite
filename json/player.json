@@ -65,7 +65,8 @@
                                     "attributes": {
                                         "src": "media/left_arrow.svg",
                                         "alt": "<-",
-                                        "onclick": "changePower(this, -1);"
+                                        "onclick": "changePower(this, -1);",
+                                        "class": "clickElement"
                                     }
                                 },
                                 {
@@ -80,7 +81,8 @@
                                     "attributes": {
                                         "src": "media/right_arrow.svg",
                                         "alt": "->",
-                                        "onclick": "changePower(this, 1);"
+                                        "onclick": "changePower(this, 1);",
+                                        "class": "clickElement"
                                     }
                                 }
                             ]
