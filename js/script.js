@@ -1,7 +1,12 @@
 let deleteActivated = false;
+
+// This constant is used, when the script is not able to load the partial player bubble. Is shouldn't be used all the time.
+const oldBubble = '<div class="player focus"> <div class="circleBase none"> <input maxlength="20" value="name" onchange="testForSpecialName(this)"> <div id="numbers"><img src="media/left_arrow.svg" alt="left" onclick="changePower(this, -1);" class="clickElement"> <input maxlength="20" value="1"><img src="media/right_arrow.svg" alt="right" onclick="changePower(this, 1);" class="clickElement"></div> <div id="numbers"><img src="media/left_arrow.svg" alt="left" onclick="changePower(this, -1);" class="clickElement"> <input maxlength="20" value="1"><img src="media/right_arrow.svg" alt="right" onclick="changePower(this, 1);" class="clickElement"></div> <input maxlength="20" value="gender" onchange="testForSignal(this);"> </div> </div>';
+
+const partialBubbleName = 'bubble.html';
 let playerBubble;
 
-loadPartial('bubble.html', 
+loadPartial(partialBubbleName, 
             function(result) {
                 var xmlString = result,
                     parser    = new DOMParser(),
@@ -19,10 +24,13 @@ function loadPartial(name, func) {
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
             func(request.responseText);
+        } else {
+            func(oldBubble)    
         }
     };
     
-    request.send();    
+    if ( !request.send() ) 
+        func(oldBubble);
 }
 
 // Credit goes to https://www.w3schools.com/howto/howto_js_draggable.asp for the dragElement function.
@@ -107,102 +115,13 @@ function addPlayer() {
 
     let ele = document.getElementById('players');
     
-    let newPlayer = createNewPlayer();
+    let newPlayer = playerBubble.cloneNode(true);
+    dragElement(newPlayer);
 
     newPlayer.style.left = (Math.random()*65) + 5 + '%';
     newPlayer.style.top =  (Math.random()*65) + 5 + '%'; 
 
     ele.appendChild(newPlayer);
-
-    function createNewPlayer(x, y) {
-        let newP;
-
-        if (playerBubble)
-            newP = playerBubble.cloneNode(true);
-        else
-            newP = getPlayerBubble();
-        
-        dragElement(newP);
-        return newP;
-    }
-
-    function parseElement(ele) {
-        let eleConfig = JSON.parse(ele);
-        
-        let newEle = parseNode(eleConfig['elements'][0]);
-        return newEle;
-    }
-    
-    function parseNode(node) {
-        let mainNode = document.createElement(node['tagName']);
-    
-        let attrConfig = node['attributes'];
-        for (let attr in attrConfig) {
-            mainNode.setAttribute(attr, attrConfig[attr])
-        }
-        
-        let eleConfig = node['elements'];
-        let eleNode;
-        for (let ele in eleConfig) {
-            eleNode = parseNode(eleConfig[ele]);
-            mainNode.appendChild(eleNode);
-        }
-        return mainNode;
-    }    
-
-    function getPlayerBubble() {
-        let newP = document.createElement('div');
-        newP.setAttribute('class', 'player');
-    
-        let newC = document.createElement('div');
-        newC.setAttribute('class', 'circleBase');
-        
-        // Add name input
-        let newIn = document.createElement('input');
-        newIn.setAttribute('maxlength', maxLength);
-        newIn.setAttribute('value', 'name');
-        newIn.setAttribute('type', 'text');
-        newIn.setAttribute('onchange', 'testForSpecialName(this);')
-        newC.appendChild(newIn);
-        
-        // Add power input
-        let newDiv = document.createElement('div');
-        newDiv.setAttribute('id', 'numbers');
-    
-        // add left arrow image
-        let newImg = document.createElement('img');
-        newImg.setAttribute('src', 'media/left_arrow.svg');
-        newImg.setAttribute('alt', '<-');
-        newImg.setAttribute('onclick', 'changePower(this, -1);')
-        newDiv.appendChild(newImg);
-    
-        // the actual input
-        newIn = document.createElement('input');
-        newIn.setAttribute('maxlength', maxLength);
-        newIn.setAttribute('value', '1');
-        newDiv.appendChild(newIn);
-    
-        // add left arrow image
-        newImg = document.createElement('img');
-        newImg.setAttribute('src', 'media/right_arrow.svg');
-        newImg.setAttribute('alt', '->');
-        newImg.setAttribute('onclick', 'changePower(this, 1);')
-        newDiv.appendChild(newImg);
-    
-        newC.appendChild(newDiv);
-    
-        // Add gender input
-        newIn = document.createElement('input');
-        newIn.setAttribute('maxlength', maxLength);
-        newIn.setAttribute('value', 'gender');
-        newIn.setAttribute('onchange', 'testForSignal(this);');
-        newC.appendChild(newIn);
-    
-        newC.setAttribute('id', 'none');
-        newP.appendChild(newC);
-    
-        return newP;
-    }    
 }
 
 function changePower(ele, value) {
