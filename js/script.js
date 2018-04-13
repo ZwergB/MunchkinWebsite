@@ -7,7 +7,7 @@ loadPartial('bubble.html',
                     parser    = new DOMParser(),
                     doc = parser.parseFromString(xmlString, "text/html");
                 
-                playerBubble = doc.firstChild;
+                playerBubble = doc.body.firstChild;
             });
 
 function loadPartial(name, func) {
@@ -108,7 +108,7 @@ function addPlayer() {
     let ele = document.getElementById('players');
     
     let newPlayer = createNewPlayer();
-    console.log(newPlayer);
+
     newPlayer.style.left = (Math.random()*65) + 5 + '%';
     newPlayer.style.top =  (Math.random()*65) + 5 + '%'; 
 
@@ -118,7 +118,7 @@ function addPlayer() {
         let newP;
 
         if (playerBubble)
-            newP = playerBubble;
+            newP = playerBubble.cloneNode(true);
         else
             newP = getPlayerBubble();
         
