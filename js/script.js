@@ -5,9 +5,7 @@ loadPartial('bubble.html',
             function(result) {
                 var xmlString = result,
                     parser    = new DOMParser(),
-                    doc       = parser.parseFromString(xmlString, "text/xml");
-
-                playerBubble = xmlString;
+                    playerBubble = parser.parseFromString(xmlString, "text/xml");
             });
 
 function loadPartial(name, func) {
