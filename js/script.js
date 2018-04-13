@@ -1,7 +1,14 @@
 let deleteActivated = false;
 let playerBubble;
 
-loadPartial('bubble.html', x => playerBubble = x);
+loadPartial('bubble.html', 
+            function(result) {
+                var xmlString = 'result',
+                    parser    = new DOMParser(),
+                    doc       = parser.parseFromString(xmlString, "text/xml");
+
+                playerBubble = xmlString;
+            });
 
 function loadPartial(name, func) {
     const path = '/partials/';
@@ -101,6 +108,7 @@ function addPlayer() {
     let ele = document.getElementById('players');
     
     let newPlayer = createNewPlayer();
+    console.log(newPlayer);
     newPlayer.style.left = (Math.random()*65) + 5 + '%';
     newPlayer.style.top =  (Math.random()*65) + 5 + '%'; 
 
