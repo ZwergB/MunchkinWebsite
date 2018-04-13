@@ -1,7 +1,22 @@
 let deleteActivated = false;
 let playerBubble;
 
-loadJSON('json/player.json', x => playerBubble = x);
+loadPartial('bubble.html', x => playerBubble = x);
+
+function loadPartial(name, func) {
+    const path = '/partials/';
+
+    var request = new XMLHttpRequest();
+    request.open('GET', path + name, true);
+    
+    request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+            func(request.responseText);
+        }
+    };
+    
+    request.send();    
+}
 
 // Credit goes to https://www.w3schools.com/howto/howto_js_draggable.asp for the dragElement function.
 function dragElement(ele) {
@@ -95,7 +110,7 @@ function addPlayer() {
         let newP;
 
         if (playerBubble)
-            newP = parseElement(playerBubble);
+            newP = playerBubble;
         else
             newP = getPlayerBubble();
         
@@ -219,18 +234,4 @@ function testForSpecialName(ele) {
         ele.parentElement.classList.add('specialName')
     else 
         ele.parentElement.classList.remove('specialName');
-}
-
-function loadJSON(file, callback) {   
-    let xobj = new XMLHttpRequest();
-
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', file, true); // Replace 'my_data' with the path to your file
-    xobj.onreadystatechange = function () {
-          if (xobj.readyState == 4 && xobj.status == "200") {
-            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
-            callback(xobj.responseText);
-          }
-    };
-    xobj.send(null);  
 }
