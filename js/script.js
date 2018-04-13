@@ -3,7 +3,7 @@ let playerBubble;
 
 loadPartial('bubble.html', 
             function(result) {
-                var xmlString = 'result',
+                var xmlString = result,
                     parser    = new DOMParser(),
                     doc       = parser.parseFromString(xmlString, "text/xml");
 
